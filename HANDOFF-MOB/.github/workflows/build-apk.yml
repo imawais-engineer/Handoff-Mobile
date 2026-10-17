@@ -1,4 +1,4 @@
-name: Build Handoff Files APK
+name: Build Android APK
 
 on:
   push:
@@ -18,14 +18,16 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Remove machine-specific SDK path
-        run: rm -f local.properties
+      # ubuntu-latest runners ship with an Android SDK pre-installed.
+      # We just accept the licenses and ensure the required components.
+      - name: Prepare Android SDK
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-34" "build-tools;34.0.0" > /dev/null
 
       - name: Build debug APK
         run: |
+          rm -f local.properties
           chmod +x gradlew
           ./gradlew --no-daemon testDebugUnitTest assembleDebug
 
