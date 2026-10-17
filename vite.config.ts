@@ -10,7 +10,9 @@ export default defineConfig(() => {
       alias: {
         '@': path.resolve(__dirname, '.'),
       },
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.kts', '.kt', '.toml', '.pro', '.xml', '.properties', '.gradle'],
     },
+    assetsInclude: ['**/*.kt', '**/*.kts', '**/*.toml', '**/*.pro', '**/*.xml', '**/*.properties', '**/*.gradle', '**/*.jar'],
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.

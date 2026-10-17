@@ -33,6 +33,7 @@ enum class TransferDirection {
 
 enum class TransferStatus {
     IDLE,
+    CONNECTING,
     DISCOVERING,
     PAIRING,
     AWAITING_APPROVAL,
