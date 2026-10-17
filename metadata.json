@@ -1,0 +1,6 @@
+{
+  "name": "Handoff Files - Protocol Workbench & Native Android",
+  "description": "Offline-first, secure wireless file transfer protocol and native Android application with dynamic QR pairing, TCP streaming, and SHA-256 integrity verification.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
