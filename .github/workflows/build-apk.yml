@@ -1,8 +1,7 @@
 name: Build Android APK
 
+# Manual runs only — start from the Actions tab with "Run workflow".
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -19,7 +18,9 @@ jobs:
           java-version: '17'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-34" "build-tools;34.0.0" > /dev/null
 
       - name: Remove machine-specific SDK path
         run: rm -f android/local.properties
